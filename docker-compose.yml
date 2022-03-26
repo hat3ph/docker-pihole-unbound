@@ -1,26 +1,27 @@
 version: "3"
 
 services:
-  adguard-unbound:
-    container_name: adguard-unbound
-    image: lolgast/adguard-unbound
+  pihole-unbound:
+    container_name: pihole-unbound
+    image: cbcrowe/pihole-unbound
     restart: unless-stopped
-    hostname: adguard-unbound
+    hostname: pihole-unbound
     # Volumes store your data between container upgrades
     volumes:
-      - "./adguard/opt-adguard-work:/opt/adguardhome/work" # adguard container work directory
-      - "./adguard/opt-adguard-conf:/opt/adguardhome/conf" # adguard container conf directory
-      - "./unbound:/opt/unbound" # map custom unbound config
-      - "/usr/share/dns:/usr/share/dns" # map DNSSEC key and root hints from dns-root-data package
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
     ports:
-      - 53:53/tcp # AdGuard Home DNS connection
-      - 53:53/udp # AdGuard Home DNS connection
-      - 3000:3000/tcp # AdGuard Home install web panel. Can disable after installation is completed.
-      - 80:80/tcp # AdGuard Home web panel HTTP
-      #- 443:443/tcp # AdGuard Home web panel HTTPS
-      #- 784:784/udp # AdGuard Home DNS-over-QUIC service
-      #- 853:853/tcp # AdGuard Home DNS-over-TLS/QUIC service
-      #- 67:67/udp # DHCP server
-      #- 68:68/udp # DHCP server
-      #- 5035:5035/tcp # Uncomment to enable unbound access on local server
-      #- 5035:5035/udp # Uncomment to enable unbound access on local server
+      - 53:53/tcp # Pihole DNS connection
+      - 53:53/udp # Pihole DNS connection
+      - 80:80/tcp # Pihole web panel HTTP
+      #- 443:443/tcp # Pihole web panel HTTPS
+      #- 5335:5335/tcp # Uncomment to enable unbound access on local server
+      #- 5335:5335/udp # Uncomment to enable unbound access on local server
+    environment:
+      - TZ=Asia/Kuala_Lumpur # set the correct timezone
+      - WEBPASSWORD=password # set your own web panel password
+      - DNSMASQ_LISTENING=single # listen only to interface
+      - PIHOLE_DNS_=127.0.0.1#5335 # Use unbound as upstream DNS
+      - TEMPERATUREUNIT=C # set preferred temperature unit
+      - WEBTHEME=default-dark # web panel theme
+      #- ADMIN_EMAIL=xxx@gmail.com # set your admin email address
