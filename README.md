@@ -28,6 +28,18 @@ cd docker-adguard-unbound
 docker-compose up -d
 ```
 
+## Customize Pihole
+You can customize pihole in docker-compose.yml follow pihole's official docker's [documentation](https://github.com/pi-hole/docker-pi-hole#readme).
+```bash
+- TZ=Asia/Kuala_Lumpur # set the correct timezone
+- WEBPASSWORD=password # set your own web panel password
+- DNSMASQ_LISTENING=single # listen only to interface
+- PIHOLE_DNS_=127.0.0.1#5335 # Use unbound as upstream DNS
+- TEMPERATUREUNIT=C # set preferred temperature unit
+- WEBTHEME=default-dark # web panel theme
+#- ADMIN_EMAIL=xxx@gmail.com # set your admin email address
+```
+
 ## Disable open resolve to prevent DNS Amplication Attack
 If you run this in cloud as your provide DNS, advise to restrict DNS access to prevent [DNS Amplication Attack](https://openresolver.com/).
 Setup cron job to run `iptables_ddns_update.sh` to update the iptables rule.
