@@ -4,6 +4,8 @@ This solution is a combination of Pihole and Unbound in a docker-compose project
 Docker Compose file contains:
 - pihole-unbound - https://hub.docker.com/r/cbcrowe/pihole-unbound
 
+Shoutout to: https://github.com/chriscrowe/docker-pihole-unbound
+
 ## Prerequisites:
 - Install docker: https://docs.docker.com/engine/install/
 - Install docker-compose: https://docs.docker.com/compose/install/
