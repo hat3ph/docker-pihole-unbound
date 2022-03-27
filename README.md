@@ -26,7 +26,7 @@ Shoutout to: https://github.com/chriscrowe/docker-pihole-unbound
 To get started all you need to do is git clone the repository and spin up the containers.
 ```bash
 git clone https://github.com/hat3ph/docker-pihole-unbound.git
-cd docker-adguard-unbound
+cd docker-pihole-unbound
 docker-compose up -d
 ```
 
