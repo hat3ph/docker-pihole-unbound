@@ -26,13 +26,13 @@ current_ddns_ip=`cat /tmp/ddns_ip.txt`
 #echo "Current DDNS IP is $current_ddns_ip"
 
 # update/replace the iptables rules if the ddns IP have changed from the last update
-# run ‘sudo iptables --line-numbers -L DOCKER’ to get the rules line
+# run ‘sudo iptables --line-numbers -L INPUT’ to get the rules line
 if [ $ddns_ip != $current_ddns_ip ]; then
         #echo "No same IP"
 	# update iptables rules by rules number
-	#/sbin/iptables -R DOCKER 1 -p tcp --dport 80 -s $ddns_ip -j ACCEPT
-	/sbin/iptables -R DOCKER 2 -p tcp --dport 53 -s $ddns_ip -j ACCEPT
-	/sbin/iptables -R DOCKER 3 -p udp --dport 53 -s $ddns_ip -j ACCEPT
+	#/sbin/iptables -R INPUT 1 -p tcp --dport 80 -s $ddns_ip -j ACCEPT
+	/sbin/iptables -R INPUT 2 -p tcp --dport 53 -s $ddns_ip -j ACCEPT
+	/sbin/iptables -R INPUT 3 -p udp --dport 53 -s $ddns_ip -j ACCEPT
 	# update/save the latest ddns ip to ddns_ip.txt
 	echo $ddns_ip > /tmp/ddns_ip.txt
 fi
