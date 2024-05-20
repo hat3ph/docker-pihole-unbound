@@ -3,7 +3,7 @@ version: "3"
 services:
   pihole-unbound:
     container_name: pihole-unbound
-    image: cbcrowe/pihole-unbound
+    image: ghcr.io/hat3ph/pihole-unbound
     restart: unless-stopped
     hostname: pihole-unbound
     # Volumes store your data between container upgrades
