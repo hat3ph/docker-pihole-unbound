@@ -2,7 +2,7 @@
 This solution is a combination of Pihole and Unbound in a docker-compose project with the intent of enabling users to quickly and easily create and deploy a personally managed ad blocking capabilities , family safe search, and DNS caching with additional privacy options and DNSSEC validation (via Unbound). 
 
 Docker Compose file contains:
-- pihole-unbound - https://hub.docker.com/r/cbcrowe/pihole-unbound
+- pihole-unbound - https://github.com/hat3ph/pihole-unbound
 
 Shoutout to: https://github.com/chriscrowe/docker-pihole-unbound
 
