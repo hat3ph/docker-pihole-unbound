@@ -8,7 +8,6 @@ Shoutout to: https://github.com/chriscrowe/docker-pihole-unbound
 
 ## Prerequisites:
 - Install docker: https://docs.docker.com/engine/install/
-- Install docker-compose: https://docs.docker.com/compose/install/
 - Run docker as non-root: https://docs.docker.com/engine/install/linux-postinstall/
 - Run `disable_dnsstublistener.sh` first to disable systemd-resolved DNS stub listener.
 - ☁ If using a cloud provider, you need to allow ingress for below port:
@@ -19,8 +18,8 @@ Shoutout to: https://github.com/chriscrowe/docker-pihole-unbound
 | 53/udp    | Pihole DNS connection   |
 | 80/tcp    | Pihole web panel HTTP   |
 | 443/tcp   | Pihole web panel HTTPS  |
-| 5353/tcp  | Unbound DNS connection  |
-| 5353/udp  | Unbound DNS connection  |
+| 5335/tcp  | Unbound DNS connection  |
+| 5335/udp  | Unbound DNS connection  |
 
 ## Quickstart
 To get started all you need to do is git clone the repository and spin up the containers.
@@ -34,9 +33,9 @@ docker compose up -d
 You can customize pihole in docker-compose.yml follow pihole's official docker's [documentation](https://github.com/pi-hole/docker-pi-hole#readme).
 ```bash
 - TZ=Asia/Kuala_Lumpur # set the correct timezone
-- WEBPASSWORD=password # set your own web panel password
-- DNSMASQ_LISTENING=single # listen only to interface
-- PIHOLE_DNS_=127.0.0.1#5335 # Use unbound as upstream DNS
+- FTLCONF_webserver_api_password=password # set your own web panel password
+- FTLCONF_dns_listeningMode=all # listen only to interface
+- FTLCONF_dns_upstreams=127.0.0.1#5335 # Use unbound as upstream DNS
 - TEMPERATUREUNIT=C # set preferred temperature unit
 - WEBTHEME=default-dark # web panel theme
 #- ADMIN_EMAIL=xxx@gmail.com # set your admin email address
