@@ -11,7 +11,7 @@ services:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
       # optional to customize your own unbound settings
-      #- './unbound-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf'
+      #- './unbound-pihole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf'
     ports:
       - 53:53/tcp # Pihole DNS connection
       - 53:53/udp # Pihole DNS connection
